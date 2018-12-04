@@ -123,3 +123,21 @@ npm run dev
 ? Author name Yutaka Omido
 ? Choose a package manager npm
 ```
+
+### 今回の開発に不要なコードを削除してHello, World!
+- components/Logo.vueを削除
+- layouts/default.vueの<style>タグ内をごっそり削除
+- pages/index.vueを以下のように変更
+
+```
+<template>
+<div>
+    <h1>Hello, Nuxt.js</h1>
+</div>
+</template>
+
+<script>
+export default {
+}
+</script>
+```
