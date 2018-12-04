@@ -99,3 +99,27 @@ Vue.jsでアプリケーション開発をする際の各ユースケースに�
 facet filter
 snipetted
 hightlighted
+
+
+## 実装
+
+### Nuxt.jsアプリケーションを用意
+```
+# Nuxt.jsの開発環境を用意して開発サーバを起動するまで
+npm i -g create-nuxt-app
+npx create-nuxt-app algolia-sample-todo-app
+cd algolia-sample-todo-app
+npm run dev
+
+# create-nuxt-app
+? Project name algolia-sample-todo-app
+? Project description This is an TODO management application sample using Nuxt.js and Algolia
+? Use a custom server framework none
+? Use a custom UI framework bootstrap
+? Choose rendering mode Single Page App
+? Use axios module no
+? Use eslint no
+? Use prettier no
+? Author name Yutaka Omido
+? Choose a package manager npm
+```
