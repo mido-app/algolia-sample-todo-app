@@ -160,4 +160,6 @@ import config from '~/algolia.config.js'
 
 const client = algoliasearch(config.appId, config.apiKey)
 const index = client.initIndex('todo')
+
+await index.addObject(this.todoInput)
 ```
