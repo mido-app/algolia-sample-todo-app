@@ -79,3 +79,6 @@ dist
 
 # IDE
 .idea
+
+# Algolia Settings
+algolia.config.js

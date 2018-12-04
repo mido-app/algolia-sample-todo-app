@@ -124,10 +124,6 @@ npm run dev
 ? Choose a package manager npm
 ```
 
-### Algoliaのインデックスを作る
-1. アカウント登録
-2. インデックスを作る
-
 ### 今回の開発に不要なコードを削除してHello, World!
 - components/Logo.vueを削除
 - layouts/default.vueの<style>タグ内をごっそり削除
@@ -144,4 +140,24 @@ npm run dev
 export default {
 }
 </script>
+```
+
+### Algoliaのインデックスを作る
+1. アカウント登録
+2. インデックスを作る
+※ addObjectした時にインデックス勝手に作られるのでいらないかも
+
+### インデックスにレコードを追加してみよう
+いい感じのフォームを作る
+
+```
+npm install algoliasearch --save
+```
+
+```javascript
+import * as algoliasearch from 'algoliasearch'
+import config from '~/algolia.config.js'
+
+const client = algoliasearch(config.appId, config.apiKey)
+const index = client.initIndex('todo')
 ```
