@@ -124,6 +124,10 @@ npm run dev
 ? Choose a package manager npm
 ```
 
+### Algoliaのインデックスを作る
+1. アカウント登録
+2. インデックスを作る
+
 ### 今回の開発に不要なコードを削除してHello, World!
 - components/Logo.vueを削除
 - layouts/default.vueの<style>タグ内をごっそり削除
