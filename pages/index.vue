@@ -4,11 +4,13 @@
 
     <!-- TODO一覧 -->
     <b-card class="mt-2"
-            v-for="(todo, index) in todoList" 
+            v-for="todo in todoList" 
             :key="todo.objectID"
             :title="todo.title">
       <p>{{ todo.description }}</p>
-      <b-button @click="openUpdateModal(index)">編集</b-button>
+      <b-button v-if="!todo.done" variant="primary" @click="makeTodoDone(todo)">完了</b-button>
+      <b-button @click="openUpdateModal(todo)">編集</b-button>
+      <b-button @click="deleteTodo(todo)">削除</b-button>
     </b-card>
 
     <!-- 登録用ダイアログ -->
@@ -57,17 +59,19 @@ export default {
       todoList: [],
       todoInput: {
         title: '',
-        description: ''
+        description: '',
+        done: false
       },
       registerModalIsVisible: false,
       updateModalIsVisible: false,
-      updateTargetTodoIndex: null
+      updateTargetTodo: null
     }
   },
   methods: {
     clearInput () {
       this.todoInput.title = ''
-      this.todoInput.description = ''
+      this.todoInput.description = '',
+      this.todoInput.done = false
     },
     openRegisterModal () {
       this.registerModalIsVisible = true
@@ -79,18 +83,29 @@ export default {
       this.todoList.push(todo)
       this.clearInput()
     },
-    openUpdateModal (index) {
-      this.todoInput.title = this.todoList[index].title
-      this.todoInput.description = this.todoList[index].description
-      this.updateTargetTodoIndex = index
+    openUpdateModal (todo) {
+      this.todoInput.title = todo.title
+      this.todoInput.description = todo.description
+      this.updateTargetTodo = todo
       this.updateModalIsVisible = true
     },
-    async updateTodo () {
-      let todo = this.todoList[this.updateTargetTodoIndex]
-      todo.title = this.todoInput.title
-      todo.description = this.todoInput.description
-      await index.saveObject(todo)
+    async updateTodo () {      
+      this.updateTargetTodo.title = this.todoInput.title
+      this.updateTargetTodo.description = this.todoInput.description
+      await index.saveObject(this.updateTargetTodo)
       this.clearInput()
+      this.updateTargetTodo = null
+    },
+    async deleteTodo (todo) {
+      await index.deleteObject(todo.objectID)
+      this.todoList = this.todoList.filter(e => e.objectID !== objectID)
+    },
+    async makeTodoDone (todo) {
+      todo.done = true
+      await index.partialUpdateObject({
+        objectID: todo.objectID,
+        done: true
+      })
     }
   } 
 }
