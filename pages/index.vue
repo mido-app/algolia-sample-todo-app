@@ -1,9 +1,17 @@
 <template>
   <div class="p-2">
-    <b-button @click="openRegisterModal">追加</b-button>
+    <b-form-row>
+      <b-col>
+        <b-form-input type="text" v-model="query" />
+      </b-col>
+      <b-col cols="2">
+        <b-button @click="searchTodo">検索</b-button>
+      </b-col>
+    </b-form-row>
+    <b-button class="my-2" variant="primary"  block @click="openRegisterModal">TODOを追加</b-button>
 
     <!-- TODO一覧 -->
-    <b-card class="mt-2"
+    <b-card class="my-2"
             v-for="todo in todoList" 
             :key="todo.objectID"
             :title="todo.title">
@@ -49,13 +57,13 @@ const index = client.initIndex('todo')
 export default {
   async asyncData () {
     let searchResult = await index.search({ query: '' })
-    console.log(searchResult)
     return {
       todoList: searchResult.hits
     }
   },
   data () {
     return {
+      query: '',
       todoList: [],
       todoInput: {
         title: '',
@@ -106,6 +114,10 @@ export default {
         objectID: todo.objectID,
         done: true
       })
+    },
+    async searchTodo () {
+      let searchResult = await index.search({ query: this.query })
+      this.todoList = searchResult.hits
     }
   } 
 }
