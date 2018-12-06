@@ -5,7 +5,7 @@
         <b-form-input type="text" v-model="query" />
       </b-col>
       <b-col cols="2">
-        <b-button @click="searchTodo">検索</b-button>
+        <b-button block @click="searchTodo">検索</b-button>
       </b-col>
     </b-form-row>
     <b-button class="my-2" variant="primary"  block @click="openRegisterModal">TODOを追加</b-button>
@@ -17,6 +17,7 @@
             :title="todo.title">
       <p>{{ todo.description }}</p>
       <b-button v-if="!todo.done" variant="primary" @click="makeTodoDone(todo)">完了</b-button>
+      <b-button v-else disabled>完了済</b-button>
       <b-button @click="openUpdateModal(todo)">編集</b-button>
       <b-button @click="deleteTodo(todo)">削除</b-button>
     </b-card>
