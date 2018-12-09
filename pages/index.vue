@@ -12,10 +12,10 @@
 
     <!-- TODO一覧 -->
     <b-card class="my-2"
-            v-for="todo in todoList" 
+            v-for="todo in highlightedTodoList" 
             :key="todo.objectID"
             :title="todo.title">
-      <p>{{ todo.description }}</p>
+      <p v-html="todo.description"></p>
       <b-button v-if="!todo.done" variant="primary" @click="makeTodoDone(todo)">完了</b-button>
       <b-button v-else disabled>完了済</b-button>
       <b-button @click="openUpdateModal(todo)">編集</b-button>
@@ -120,6 +120,20 @@ export default {
       let searchResult = await index.search({ query: this.query })
       this.todoList = searchResult.hits
     }
-  } 
+  },
+  computed: {
+    highlightedTodoList () {
+      return this.todoList.map(todo => {
+        let highlightedTodo = Object.assign({}, todo)
+        if (todo._highlightResult.title.matchLevel !== 'none') {
+          highlightedTodo.title = todo._highlightResult.title.value
+        }
+        if (todo._highlightResult.description.matchLevel !== 'none') {
+          highlightedTodo.description = todo._highlightResult.description.value
+        }
+        return highlightedTodo
+      })
+    }
+  }
 }
 </script>
