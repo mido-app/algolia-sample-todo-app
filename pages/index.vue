@@ -134,10 +134,10 @@ export default {
     highlightedTodoList () {
       return this.todoList.map(todo => {
         let highlightedTodo = Object.assign({}, todo)
-        if (todo._highlightResult.title.matchLevel !== 'none') {
+        if (todo._highlightResult && todo._highlightResult.title.matchLevel !== 'none') {
           highlightedTodo.title = todo._highlightResult.title.value
         }
-        if (todo._highlightResult.description.matchLevel !== 'none') {
+        if (todo._highlightResult && todo._highlightResult.description.matchLevel !== 'none') {
           highlightedTodo.description = todo._highlightResult.description.value
         }
         return highlightedTodo
