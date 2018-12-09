@@ -55,6 +55,15 @@ import config from '~/algolia.config.js'
 const client = algoliasearch(config.appId, config.apiKey)
 const index = client.initIndex('todo')
 
+index.setSettings({
+  attributesToHighlight: [
+    'title',
+    'description'
+  ],
+  highlightPreTag: '<em class="search-highlight">',
+  highlightPostTag: '</em>'
+})
+
 export default {
   async asyncData () {
     let searchResult = await index.search({ query: '' })
@@ -137,3 +146,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.search-highlight {
+  background-color: yellow;
+}
+</style>
