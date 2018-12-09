@@ -116,7 +116,7 @@ export default {
     },
     async deleteTodo (todo) {
       await index.deleteObject(todo.objectID)
-      this.todoList = this.todoList.filter(e => e.objectID !== objectID)
+      this.todoList = this.todoList.filter(e => e.objectID !== todo.objectID)
     },
     async makeTodoDone (todo) {
       todo.done = true
