@@ -32,7 +32,7 @@ export default {
 }
 ```
 
-Then, install libraries and enjoy!
+Then, install libraries and enjoy :)
 ``` bash
 # install dependencies
 $ npm install
