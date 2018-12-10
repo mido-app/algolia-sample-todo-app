@@ -2,7 +2,7 @@
   "name": "algolia-sample-todo-app",
   "version": "1.0.0",
   "description": "This is an TODO management application sample using Nuxt.js and Algolia",
-  "author": "Yutaka Omido",
+  "author": "mido_app",
   "private": true,
   "scripts": {
     "dev": "nuxt",
