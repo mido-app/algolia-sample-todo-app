@@ -11,10 +11,10 @@ You can learn basic usage of Algolia shown below from this repository.
 However, **Please do not use this code to production as it is!!!**
 
 
-This sample use admin api key to create, update and delete records from front end for simplicity.
+This sample use admin api key to create, update and delete records from frontend for simplicity.
 So, if you make this application public, users can get admin key and then they can do all the operation to your index.
 
-If you create a application for production, frontend application must use readonly api key and all the update logic must to move to backend.
+If you create a application for production, frontend application must use readonly api key and all the update logic must move to backend.
 
 
 ## Build Setup
