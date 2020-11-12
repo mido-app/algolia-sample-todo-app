@@ -27,10 +27,10 @@
              @ok="registerTodo"
              @calcel="clearInput">
       <b-form-group label="Title" label-for="title">
-       <b-form-input id="title" type="text" v-model="todoInput.title" />
+       <b-form-input id="register-title" type="text" v-model="todoInput.title" />
       </b-form-group>
       <b-form-group label="Description" label-for="description">
-       <b-form-input id="description" type="text" v-model="todoInput.description" />
+       <b-form-input id="register-description" type="text" v-model="todoInput.description" />
       </b-form-group>
     </b-modal>
 
@@ -39,10 +39,10 @@
              @ok="updateTodo"
              @calcel="clearInput">
       <b-form-group label="Title" label-for="title">
-       <b-form-input id="title" type="text" v-model="todoInput.title" />
+       <b-form-input id="update-title" type="text" v-model="todoInput.title" />
       </b-form-group>
       <b-form-group label="Description" label-for="description">
-       <b-form-input id="description" type="text" v-model="todoInput.description" />
+       <b-form-input id="update-description" type="text" v-model="todoInput.description" />
       </b-form-group>
     </b-modal>
   </div>
