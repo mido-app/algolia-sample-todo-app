@@ -13,8 +13,8 @@
     <!-- TODO一覧 -->
     <b-card class="my-2"
             v-for="todo in highlightedTodoList" 
-            :key="todo.objectID"
-            :title="todo.title">
+            :key="todo.objectID">
+      <b-card-tltle v-html="todo.title"></b-card-tltle>
       <p v-html="todo.description"></p>
       <b-button v-if="!todo.done" variant="primary" @click="makeTodoDone(todo)">完了</b-button>
       <b-button v-else disabled>完了済</b-button>
@@ -66,7 +66,7 @@ index.setSettings({
 
 export default {
   async asyncData () {
-    let searchResult = await index.search({ query: '' })
+    let searchResult = await index.search('')
     return {
       todoList: searchResult.hits
     }
@@ -96,7 +96,7 @@ export default {
     },
     async registerTodo () {
       let todo = Object.assign({}, this.todoInput)
-      let content = await index.addObject(todo)
+      let content = await index.saveObject(todo, { autoGenerateObjectIDIfNotExist: true })
       todo.objectID = content.objectID
       this.todoList.push(todo)
       this.clearInput()
@@ -126,7 +126,7 @@ export default {
       })
     },
     async searchTodo () {
-      let searchResult = await index.search({ query: this.query })
+      let searchResult = await index.search(this.query)
       this.todoList = searchResult.hits
     }
   },
